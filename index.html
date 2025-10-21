@@ -3,294 +3,1446 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>PestON - Çevre Sağlığı</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>PestON - Çevre Sağlığı</title><!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#22c55e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PestON">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="description" content="Profesyonel çevre sağlığı hizmetleri - İlaçlama, peyzaj düzenleme ve dezenfeksiyon"><!-- App Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiMyMmM1NWUiLz4KPHRleHQgeD0iOTAiIHk9IjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QRVNUT048L3RleHQ+Cjx0ZXh0IHg9IjkwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIG9wYWNpdHk9IjAuOSI+w4dldnJlIFNhxJ9sxLHEn8SxPC90ZXh0Pgo8L3N2Zz4K">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzIyYzU1ZSIvPgo8dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlA8L3RleHQ+Cjwvc3ZnPgo="><!-- Manifest -->
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlBlc3RPTiAtIMOHZXZyZSBTYcSfbMSxxJ/EsSIsCiAgInNob3J0X25hbWUiOiAiUGVzdE9OIiwKICAiZGVzY3JpcHRpb24iOiAiUHJvZmVzeW9uZWwgw6dldnJlIHNhxJ9sxLHEn8SxIGhpem1ldGxlcmkiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzIyYzU1ZSIsCiAgInRoZW1lX2NvbG9yIjogIiMyMmM1NWUiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlNVGd3SWlCb1pXbG5hSFE5SWpFNE1DSWlJSFpwWlhkQ2IzZzlJakFnTUNBeE9EQWdNVGd3SWlCbWFXeHNQU0p1YjI1bElpQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaVBnbzhjbVZqZENCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lpSUhKNFBTSTBNQ0lpSUdacGJHdzlJaUl5TW1NMU5XVWlMejRLUEhSbGVIUWdlRDBpT1RBaUlIazlJamd3SWlCbWIyNTBMV1poYldsc2VUMGlRWEpwWVd3c0lITmhibk10YzJWeWFXWWlJR1p2Ym5RdGMybDZaVDBpTWpnaUlHWnZiblF0ZDJWcFoyaDBQU0k1TURBaUlHWnBiR3c5SW5kb2FYUmxJaUIwWlhoMExXRnVZMmh2Y2owaWJXbGtaR3hsSWo1UVJWTlVUMDQ4TDNSbGVIUStDanh3WlhoMElIZzlJamt3SWlCNVBTSXhNVEFpSUdadmJuUXRabUZ0YVd4NVBTSkJjbWxoYkN3Z2MyRnVjeTF6WlhKcFppSWdabTl1ZEMxemFYcGxQU0l4TWlJZ1ptOXVkQzEzWldsbmFIUTlJall3TUNJZ1ptbHNiRDBpZDJocGRHVWlJSFJsZUhRdFlXNWphRzl5UFNKdGFXUmtiR1VpSUc5d1lXTnBkSGs5SWpBdU9TSStRMlYyY21VZ1UyRm5iRWxuYVNCVGFXZGlhU0E4TDNSbGVIUStDand2YzNablBnbz0iLAogICAgICAic2l6ZXMiOiAiMTgweDEwOCIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
   <script src="/_sdk/element_sdk.js"></script>
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUGVzdE9OIC0gw4dldnJlIFNhxJ9sxLHEn8SxIiwic2hvcnRfbmFtZSI6IlBlc3RPTiIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMDA3YzNkIiwidGhlbWVfY29sb3IiOiIjMDA3YzNkIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1qUXdJaUJvWldsbmFIUTlJakkwTUNJZ2RtbGxkMEp2ZUQwaU1DQXdJakkwTUNBeU5EQWlJR1pwYkd3OUlpTXdNRGRqTTJRaVBnbzhZMmx5WTJ4bElHTjRQU0l4TWpBaUlHTjVQU0l4TWpBaUlISTlJalF3SWo0OEwyTnBjbU5zWlQ0OEwzTjJaejQ9Iiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19">
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
         body {
             box-sizing: border-box;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #007c3d 0%, #00a651 100%);
+        
+        .mobile-container {
+            max-width: 430px;
+            margin: 0 auto;
+            background: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
-        .service-card {
+        
+        .status-bar {
+            background: linear-gradient(135deg, #13322B 0%, #0f2620 100%);
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .app-header {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            padding: 20px 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        
+        .logo-placeholder {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
-        .service-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 124, 61, 0.15);
+        
+        .peston-logo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .floating-action {
+        
+        .peston-brand-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            padding: 6px;
+        }
+        
+        .brand-main {
+            font-size: 14px;
+            font-weight: 900;
+            color: white;
+            line-height: 0.8;
+            letter-spacing: 0.3px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 2px;
+        }
+        
+        .brand-sub {
+            font-size: 7px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            line-height: 0.9;
+            letter-spacing: 0.2px;
+            text-transform: uppercase;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #22c55e;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 12px 0 8px 0;
+            display: flex;
+            justify-content: space-around;
+            z-index: 50;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 60px;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+        }
+        
+        .page {
+            display: none;
+            padding: 20px;
+            padding-bottom: 120px;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #22c55e;
+        }
+        
+        .floating-button {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+            transition: all 0.3s ease;
+            z-index: 40;
+        }
+        
+        .floating-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .emergency-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        
+        .request-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #3b82f6;
+        }
+        
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-confirmed { background: #dbeafe; color: #1e40af; }
+        .status-completed { background: #d1fae5; color: #065f46; }
+        .status-cancelled { background: #fee2e2; color: #991b1b; }
+        
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            right: 20px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            transform: translateY(-100px);
+            transition: all 0.3s ease;
+            z-index: 200;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+        }
+        
+        .notification.success {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+        }
+        
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        @media (max-width: 375px) {
+            .mobile-container {
+                max-width: 100%;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                margin: 10px 15px;
+                padding: 15px;
+            }
+        }
+        
+        .mobile-optimized .service-card {
+            margin: 10px 15px;
+            padding: 18px;
+        }
+        
+        .mobile-optimized .stats-grid {
+            gap: 12px;
+        }
+        
+        .mobile-optimized .contact-card {
+            padding: 16px;
+        }
+        
+        @media (min-width: 431px) {
+            .mobile-container {
+                border-radius: 25px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                overflow: hidden;
+            }
+        }
+        
+        /* PWA Specific Styles */
+        @media (display-mode: standalone) {
+            .status-bar {
+                padding-top: env(safe-area-inset-top);
+                height: calc(44px + env(safe-area-inset-top));
+            }
+            
+            .mobile-container {
+                margin-top: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            
+            .bottom-nav {
+                padding-bottom: calc(8px + env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Install Prompt */
+        .install-prompt {
             position: fixed;
             bottom: 20px;
+            left: 20px;
             right: 20px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+            display: none;
+            align-items: center;
+            justify-content: space-between;
             z-index: 1000;
+            animation: slideUp 0.3s ease;
         }
-        .modal-overlay {
-            backdrop-filter: blur(4px);
+        
+        .install-prompt.show {
+            display: flex;
         }
-        .form-input:focus {
-            border-color: #007c3d;
-            box-shadow: 0 0 0 3px rgba(0, 124, 61, 0.1);
+        
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .qr-scanner-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .qr-viewfinder {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qr-scanner-frame {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+        }
+        
+        .qr-corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #3b82f6;
+        }
+        
+        .qr-corner.top-left {
+            top: -3px;
+            left: -3px;
+            border-right: none;
+            border-bottom: none;
+            border-top-left-radius: 8px;
+        }
+        
+        .qr-corner.top-right {
+            top: -3px;
+            right: -3px;
+            border-left: none;
+            border-bottom: none;
+            border-top-right-radius: 8px;
+        }
+        
+        .qr-corner.bottom-left {
+            bottom: -3px;
+            left: -3px;
+            border-right: none;
+            border-top: none;
+            border-bottom-left-radius: 8px;
+        }
+        
+        .qr-corner.bottom-right {
+            bottom: -3px;
+            right: -3px;
+            border-left: none;
+            border-top: none;
+            border-bottom-right-radius: 8px;
+        }
+        
+        .qr-scanning-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            animation: qr-scan 2s linear infinite;
+        }
+        
+        @keyframes qr-scan {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(196px); opacity: 1; }
+        }
+        
+        .qr-scanner-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            animation: qr-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes qr-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full bg-gray-50">
-  <div id="app" class="min-h-full"><!-- Header -->
-   <header class="gradient-bg text-white shadow-lg">
-    <div class="max-w-md mx-auto px-4 py-6">
-     <div class="flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-       <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-        </svg>
-       </div>
-       <div>
-        <h1 id="app-title" class="text-xl font-bold">PestON</h1>
-        <p id="app-subtitle" class="text-sm opacity-90">Çevre Sağlığı Uzmanı</p>
-       </div>
-      </div><button id="menu-btn" class="p-2 rounded-lg bg-white bg-opacity-20 hover:bg-opacity-30 transition-colors">
-       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-       </svg></button>
-     </div>
+ <body class="h-full bg-gray-200"><!-- Install Prompt -->
+  <div id="install-prompt" class="install-prompt">
+   <div>
+    <div class="font-bold">
+     📱 Uygulamayı Yükle
     </div>
-   </header><!-- Main Content -->
-   <main class="max-w-md mx-auto px-4 py-6 space-y-6"><!-- Services Grid -->
-    <section>
-     <h2 id="services-title" class="text-lg font-semibold text-gray-800 mb-4">Hizmetlerimiz</h2>
-     <div class="grid grid-cols-2 gap-4">
-      <div class="service-card bg-white rounded-xl p-4 shadow-sm border border-gray-100 cursor-pointer" data-service="haşere">
-       <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-3">
-        <svg class="w-6 h-6 text-red-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-        </svg>
-       </div>
-       <h3 class="font-medium text-gray-800 mb-1">Haşere Kontrolü</h3>
-       <p class="text-sm text-gray-600">Böcek ve zararlı kontrolü</p>
-      </div>
-      <div class="service-card bg-white rounded-xl p-4 shadow-sm border border-gray-100 cursor-pointer" data-service="kemirgen">
-       <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
-        <svg class="w-6 h-6 text-orange-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-        </svg>
-       </div>
-       <h3 class="font-medium text-gray-800 mb-1">Kemirgen Kontrolü</h3>
-       <p class="text-sm text-gray-600">Fare ve sıçan kontrolü</p>
-      </div>
-      <div class="service-card bg-white rounded-xl p-4 shadow-sm border border-gray-100 cursor-pointer" data-service="dezenfeksiyon">
-       <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewbox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z" />
-        </svg>
-       </div>
-       <h3 class="font-medium text-gray-800 mb-1">Dezenfeksiyon</h3>
-       <p class="text-sm text-gray-600">Hijyen ve temizlik</p>
-      </div>
-      <div class="service-card bg-white rounded-xl p-4 shadow-sm border border-gray-100 cursor-pointer" data-service="danışmanlık">
-       <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
-        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-        </svg>
-       </div>
-       <h3 class="font-medium text-gray-800 mb-1">Danışmanlık</h3>
-       <p class="text-sm text-gray-600">Uzman görüşü ve analiz</p>
-      </div>
-     </div>
-    </section><!-- Quick Actions -->
-    <section>
-     <h2 id="actions-title" class="text-lg font-semibold text-gray-800 mb-4">Hızlı İşlemler</h2>
-     <div class="space-y-3"><button id="request-service-btn" class="w-full bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex items-center justify-between hover:bg-gray-50 transition-colors">
-       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-         <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-         </svg>
-        </div>
-        <div class="text-left">
-         <h3 class="font-medium text-gray-800">Hizmet Talebi</h3>
-         <p class="text-sm text-gray-600">Yeni talep oluştur</p>
-        </div>
-       </div>
-       <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-       </svg></button> <button id="emergency-btn" class="w-full bg-red-50 rounded-xl p-4 border border-red-200 flex items-center justify-between hover:bg-red-100 transition-colors">
-       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-         <svg class="w-5 h-5 text-red-600" fill="currentColor" viewbox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-         </svg>
-        </div>
-        <div class="text-left">
-         <h3 class="font-medium text-red-800">Acil Durum</h3>
-         <p class="text-sm text-red-600">7/24 acil müdahale</p>
-        </div>
-       </div>
-       <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-       </svg></button>
-     </div>
-    </section><!-- Contact Info -->
-    <section class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-     <h2 id="contact-title" class="text-lg font-semibold text-gray-800 mb-4">İletişim</h2>
-     <div class="space-y-3">
-      <div class="flex items-center space-x-3">
-       <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-        <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewbox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-        </svg>
-       </div>
-       <div>
-        <p class="font-medium text-gray-800">+95309456325</p>
-        <p class="text-sm text-gray-600">7/24 Destek Hattı</p>
-       </div>
-      </div>
-      <div class="flex items-center space-x-3">
-       <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-        </svg>
-       </div>
-       <div>
-        <p class="font-medium text-gray-800">info@peston.com.tr</p>
-        <p class="text-sm text-gray-600">E-posta Desteği</p>
-       </div>
-      </div>
-     </div>
-    </section>
-   </main><!-- Service Request Modal -->
-   <div id="service-modal" class="fixed inset-0 bg-black bg-opacity-50 modal-overlay hidden z-50">
-    <div class="flex items-end justify-center min-h-screen px-4 pb-4">
-     <div class="bg-white rounded-t-2xl w-full max-w-md transform transition-all">
-      <div class="p-6">
-       <div class="flex items-center justify-between mb-6">
-        <h3 id="modal-title" class="text-xl font-semibold text-gray-800">Hizmet Talebi</h3><button id="close-modal" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-         <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-         </svg></button>
-       </div>
-       <form id="service-form" class="space-y-4">
-        <div><label for="customer-name" class="block text-sm font-medium text-gray-700 mb-2">Ad Soyad</label> <input type="text" id="customer-name" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-colors" placeholder="Adınızı ve soyadınızı girin" required>
-        </div>
-        <div><label for="customer-phone" class="block text-sm font-medium text-gray-700 mb-2">Telefon</label> <input type="tel" id="customer-phone" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-colors" placeholder="0XXX XXX XX XX" required>
-        </div>
-        <div><label for="service-type" class="block text-sm font-medium text-gray-700 mb-2">Hizmet Türü</label> <select id="service-type" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-colors" required> <option value="">Hizmet seçin</option> <option value="haşere">Haşere Kontrolü</option> <option value="kemirgen">Kemirgen Kontrolü</option> <option value="dezenfeksiyon">Dezenfeksiyon</option> <option value="danışmanlık">Danışmanlık</option> </select>
-        </div>
-        <div><label for="customer-address" class="block text-sm font-medium text-gray-700 mb-2">Adres</label> <textarea id="customer-address" rows="3" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-colors resize-none" placeholder="Hizmet alacağınız adresi yazın" required></textarea>
-        </div>
-        <div><label for="service-notes" class="block text-sm font-medium text-gray-700 mb-2">Ek Notlar</label> <textarea id="service-notes" rows="3" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-colors resize-none" placeholder="Özel durumlar veya ek bilgiler"></textarea>
-        </div>
-        <div class="flex space-x-3 pt-4"><button type="button" id="cancel-btn" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"> İptal </button> <button type="submit" id="submit-btn" class="flex-1 px-6 py-3 gradient-bg text-white rounded-lg hover:opacity-90 transition-opacity font-medium"> Talep Gönder </button>
-        </div>
-       </form>
-      </div>
-     </div>
+    <div class="text-sm opacity-90">
+     Ana ekranınıza ekleyin
     </div>
-   </div><!-- Success Message -->
-   <div id="success-message" class="fixed top-4 left-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg transform -translate-y-full transition-transform z-50">
-    <div class="flex items-center space-x-3">
-     <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+   </div>
+   <div class="flex space-x-2"><button onclick="installApp()" class="bg-white text-green-600 px-4 py-2 rounded-lg font-medium text-sm"> Yükle </button> <button onclick="dismissInstall()" class="text-white opacity-75 text-sm"> ✕ </button>
+   </div>
+  </div>
+  <div class="mobile-container"><!-- Status Bar -->
+   <div class="status-bar"><span>9:41</span> <span class="font-bold">PestON</span>
+    <div class="flex items-center space-x-1">
+     <div class="flex space-x-1">
+      <div class="w-1 h-1 bg-white rounded-full"></div>
+      <div class="w-1 h-1 bg-white rounded-full"></div>
+      <div class="w-1 h-1 bg-white rounded-full"></div>
+      <div class="w-1 h-1 bg-white rounded-full"></div>
+     </div>
+     <svg class="w-4 h-4 ml-2" fill="white" viewbox="0 0 24 24"><path d="M2 17h20v2H2zm1.15-4.05L4 11l.85 1.95L6.8 13l-1.95.85L4 15.8l-.85-1.95L1.2 13l1.95-.85zM6.5 9L8 6.5 9.5 9 12 7.5 10.5 6 12 4.5 9.5 3 8 5.5 6.5 3 4 4.5 5.5 6 4 7.5 6.5 9zM19.5 6L21 3.5 22.5 6 25 4.5 23.5 3 25 1.5 22.5 0 21 2.5 19.5 0 17 1.5 18.5 3 17 4.5 19.5 6z" />
      </svg>
-     <div>
-      <p class="font-medium">Talebiniz başarıyla gönderildi!</p>
-      <p class="text-sm opacity-90">En kısa sürede size dönüş yapacağız.</p>
+    </div>
+   </div><!-- App Header -->
+   <div class="app-header">
+    <div class="logo-container">
+     <div class="logo-placeholder">
+      <div class="peston-logo">
+       <div class="peston-brand-logo">
+        <div class="brand-main">
+         PESTON
+        </div>
+        <div class="brand-sub">
+         Çevre Sağlığı
+        </div>
+       </div>
+      </div>
      </div>
+    </div>
+    <div class="text-center">
+     <p id="company-slogan" class="opacity-90 text-xs">Profesyonel Çözümler, Sağlıklı Yarınlar</p>
+    </div>
+   </div><!-- Main App Content -->
+   <div id="home-page" class="page active">
+    <div class="service-card">
+     <div class="service-icon">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+      </svg>
+     </div>
+     <h3 class="text-xl font-bold text-gray-800 mb-2">İlaçlama Hizmetleri</h3>
+     <p class="text-gray-600 mb-4">Haşere, böcek ve zararlı kontrolü için profesyonel ilaçlama hizmetleri</p><button onclick="openServiceModal('İlaçlama')" class="btn-primary"> Hizmet Talep Et </button>
+    </div>
+    <div class="service-card">
+     <div class="service-icon">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+     </div>
+     <h3 class="text-xl font-bold text-gray-800 mb-2">Peyzaj Düzenleme</h3>
+     <p class="text-gray-600 mb-4">Bahçe tasarımı, peyzaj düzenleme ve bakım hizmetleri</p><button onclick="openServiceModal('Peyzaj')" class="btn-primary"> Hizmet Talep Et </button>
+    </div>
+    <div class="service-card">
+     <div class="service-icon">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+     </div>
+     <h3 class="text-xl font-bold text-gray-800 mb-2">Çevre Sağlığı</h3>
+     <p class="text-gray-600 mb-4">Dezenfeksiyon, hijyen kontrolü ve çevre sağlığı hizmetleri</p><button onclick="openServiceModal('Çevre Sağlığı')" class="btn-primary"> Hizmet Talep Et </button>
+    </div><!-- Stats -->
+    <div class="stats-grid">
+     <div class="stat-card">
+      <div id="total-requests" class="text-3xl font-bold mb-2" style="color: #22c55e;">
+       0
+      </div>
+      <div class="text-gray-600 text-sm">
+       Toplam Talep
+      </div>
+     </div>
+     <div class="stat-card">
+      <div id="completed-services" class="text-3xl font-bold mb-2" style="color: #22c55e;">
+       0
+      </div>
+      <div class="text-gray-600 text-sm">
+       Tamamlanan
+      </div>
+     </div>
+    </div>
+   </div><!-- Services Page -->
+   <div id="services-page" class="page">
+    <div class="service-card">
+     <h2 class="text-2xl font-bold text-gray-800 mb-4">Hizmet Taleplerim</h2>
+     <div class="bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
+      <div class="flex space-x-2"><button onclick="filterRequests('all')" class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium" style="background-color: rgba(34, 197, 94, 0.1); color: #22c55e;"> Tümü </button> <button onclick="filterRequests('pending')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-600"> Bekleyen </button> <button onclick="filterRequests('completed')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-600"> Tamamlanan </button>
+      </div>
+     </div>
+    </div>
+    <div id="requests-container">
+     <div class="text-center text-gray-500 py-12">
+      <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+      <p class="text-lg font-medium">Henüz hizmet talebi yok</p>
+      <p class="text-sm mt-2">İlk hizmet talebinizi oluşturun</p>
+     </div>
+    </div>
+   </div><!-- Contact Page -->
+   <div id="contact-page" class="page">
+    <div class="service-card">
+     <h2 class="text-2xl font-bold text-gray-800 mb-4">İletişim</h2>
+     <p class="text-gray-600 mb-6">Bizimle iletişime geçin, size yardımcı olmaktan mutluluk duyarız.</p>
+    </div>
+    <div class="contact-card" onclick="callPhone()">
+     <div class="contact-icon">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>
+     </div>
+     <div>
+      <h3 class="font-bold text-gray-800">Telefon</h3>
+      <p id="company-phone" class="text-gray-600">+90 530 945 63 25</p>
+     </div>
+    </div>
+    <div class="contact-card" onclick="sendEmail()">
+     <div class="contact-icon">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+     </div>
+     <div>
+      <h3 class="font-bold text-gray-800">E-posta</h3>
+      <p id="company-email" class="text-gray-600">info@peston.com.tr</p>
+     </div>
+    </div>
+    <div class="contact-card">
+     <div class="contact-icon">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+     </div>
+     <div>
+      <h3 class="font-bold text-gray-800">Çalışma Saatleri</h3>
+      <p class="text-gray-600">Pazartesi - Cumartesi: 08:00 - 18:00</p>
+     </div>
+    </div>
+    <div class="service-card mt-6">
+     <h3 class="text-lg font-bold text-gray-800 mb-4">Hızlı Mesaj</h3>
+     <form onsubmit="sendQuickMessage(event)">
+      <div class="form-group"><input type="text" placeholder="Adınız" class="form-input" required>
+      </div>
+      <div class="form-group"><input type="tel" placeholder="Telefon numaranız" class="form-input" required>
+      </div>
+      <div class="form-group"><textarea placeholder="Mesajınız" rows="4" class="form-input" required></textarea>
+      </div><button type="submit" class="btn-primary">Mesaj Gönder</button>
+     </form>
+    </div>
+   </div><!-- About Page -->
+   <div id="about-page" class="page">
+    <div class="service-card">
+     <h2 class="text-2xl font-bold text-gray-800 mb-4">Hakkımızda</h2>
+     <p class="text-gray-600 mb-6">PestON Çevre Sağlığı olarak, çevre sağlığı alanında uzman kadromuz ve modern ekipmanlarımızla hizmet vermekteyiz.</p>
+     <div class="space-y-4">
+      <div class="flex items-start space-x-3">
+       <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style="background-color: rgba(34, 197, 94, 0.1);">
+        <svg class="w-4 h-4" style="color: #22c55e;" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800">Uzman Kadro</h4>
+        <p class="text-gray-600 text-sm">Alanında deneyimli ve sertifikalı uzmanlarımız</p>
+       </div>
+      </div>
+      <div class="flex items-start space-x-3">
+       <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style="background-color: rgba(34, 197, 94, 0.1);">
+        <svg class="w-4 h-4" style="color: #22c55e;" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800">Modern Ekipman</h4>
+        <p class="text-gray-600 text-sm">Son teknoloji ekipmanlar ve çevre dostu ürünler</p>
+       </div>
+      </div>
+      <div class="flex items-start space-x-3">
+       <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style="background-color: rgba(34, 197, 94, 0.1);">
+        <svg class="w-4 h-4" style="color: #22c55e;" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800">Güvenilir Hizmet</h4>
+        <p class="text-gray-600 text-sm">Kaliteli ve güvenilir hizmet anlayışımız</p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="service-card">
+     <h3 class="text-xl font-bold text-gray-800 mb-4">Hizmet Alanlarımız</h3>
+     <div class="grid grid-cols-1 gap-3">
+      <div class="p-3 rounded-lg border-l-4" style="background-color: rgba(34, 197, 94, 0.05); border-color: #22c55e;">
+       <h4 class="font-semibold" style="color: #22c55e;">İlaçlama Hizmetleri</h4>
+       <p class="text-sm" style="color: #16a34a;">Haşere, böcek ve zararlı kontrolü</p>
+      </div>
+      <div class="p-3 rounded-lg border-l-4" style="background-color: rgba(34, 197, 94, 0.05); border-color: #22c55e;">
+       <h4 class="font-semibold" style="color: #22c55e;">Peyzaj Düzenleme</h4>
+       <p class="text-sm" style="color: #16a34a;">Bahçe tasarımı ve bakım hizmetleri</p>
+      </div>
+      <div class="p-3 rounded-lg border-l-4" style="background-color: rgba(34, 197, 94, 0.05); border-color: #22c55e;">
+       <h4 class="font-semibold" style="color: #22c55e;">Çevre Sağlığı</h4>
+       <p class="text-sm" style="color: #16a34a;">Dezenfeksiyon ve hijyen kontrolü</p>
+      </div>
+     </div>
+    </div>
+   </div><!-- QR Code Scanner Button -->
+   <div class="floating-button" onclick="openQRScanner()" style="bottom: 180px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+    </svg>
+   </div><!-- Emergency Button -->
+   <div class="floating-button emergency-pulse" onclick="emergencyCall()">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+    </svg>
+   </div><!-- Bottom Navigation -->
+   <div class="bottom-nav">
+    <div class="nav-item active" onclick="switchPage('home')">
+     <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+     </svg><span class="text-xs">Ana Sayfa</span>
+    </div>
+    <div class="nav-item" onclick="switchPage('services')">
+     <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+     </svg><span class="text-xs">Hizmetler</span>
+    </div>
+    <div class="nav-item" onclick="switchPage('contact')">
+     <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+     </svg><span class="text-xs">İletişim</span>
+    </div>
+    <div class="nav-item" onclick="switchPage('about')">
+     <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+     </svg><span class="text-xs">Hakkımızda</span>
+    </div>
+   </div><!-- Service Request Modal -->
+   <div id="service-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+     <div class="flex items-center justify-between mb-6">
+      <h3 class="text-2xl font-bold text-gray-800">Hizmet Talebi</h3><button onclick="closeServiceModal()" class="text-gray-400 hover:text-gray-600">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       </svg></button>
+     </div>
+     <form id="service-form" onsubmit="submitServiceRequest(event)">
+      <div class="form-group"><label class="form-label">Hizmet Türü</label> <select id="service-type" class="form-input" required> <option value="">Seçiniz</option> <option value="İlaçlama">İlaçlama Hizmetleri</option> <option value="Peyzaj">Peyzaj Düzenleme</option> <option value="Çevre Sağlığı">Çevre Sağlığı</option> </select>
+      </div>
+      <div class="form-group"><label class="form-label">Adınız Soyadınız</label> <input type="text" id="customer-name" class="form-input" required>
+      </div>
+      <div class="form-group"><label class="form-label">Telefon Numaranız</label> <input type="tel" id="customer-phone" class="form-input" required>
+      </div>
+      <div class="form-group"><label class="form-label">Adres</label> <textarea id="customer-address" class="form-input" rows="3" required></textarea>
+      </div>
+      <div class="form-group"><label class="form-label">Alan Büyüklüğü (m²)</label> <input type="text" id="area-size" class="form-input" placeholder="Örn: 100 m²">
+      </div>
+      <div class="form-group"><label class="form-label">Tercih Edilen Tarih</label> <input type="date" id="service-date" class="form-input" required>
+      </div>
+      <div class="form-group"><label class="form-label">Öncelik</label> <select id="service-priority" class="form-input" required> <option value="normal">Normal</option> <option value="urgent">Acil</option> <option value="emergency">Çok Acil</option> </select>
+      </div>
+      <div class="form-group"><label class="form-label">Ek Notlar</label> <textarea id="service-notes" class="form-input" rows="3" placeholder="Özel istekleriniz veya detaylar..."></textarea>
+      </div>
+      <div class="flex gap-3 mt-6"><button type="button" onclick="closeServiceModal()" class="btn-secondary"> İptal </button> <button type="submit" id="submit-service-btn" class="btn-primary"> Talep Gönder </button>
+      </div>
+     </form>
+    </div>
+   </div><!-- QR Scanner Modal -->
+   <div id="qr-scanner-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+     <div class="flex items-center justify-between mb-6">
+      <h3 class="text-2xl font-bold text-gray-800">QR Kod Okuyucu</h3><button onclick="closeQRScanner()" class="text-gray-400 hover:text-gray-600">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       </svg></button>
+     </div>
+     <div class="text-center"><!-- QR Scanner Interface -->
+      <div class="qr-scanner-container mb-6">
+       <div class="qr-viewfinder">
+        <div class="qr-scanner-frame">
+         <div class="qr-corner top-left"></div>
+         <div class="qr-corner top-right"></div>
+         <div class="qr-corner bottom-left"></div>
+         <div class="qr-corner bottom-right"></div>
+         <div class="qr-scanning-line"></div>
+        </div>
+       </div>
+      </div>
+      <div class="space-y-4">
+       <p class="text-gray-600">Kamu uygulamasından QR kodu okutun</p><!-- Manual Input Option -->
+       <div class="border-t pt-4">
+        <p class="text-sm text-gray-500 mb-3">Veya manuel olarak girin:</p>
+        <div class="form-group"><input type="text" id="manual-qr-input" class="form-input" placeholder="QR kod verisi veya link">
+        </div><button onclick="processManualQR()" class="btn-primary mt-3"> Verileri İşle </button>
+       </div><!-- Common Government Apps -->
+       <div class="border-t pt-4">
+        <p class="text-sm text-gray-500 mb-3">Yaygın kamu uygulamaları:</p>
+        <div class="grid grid-cols-2 gap-2"><button onclick="simulateGovApp('e-devlet')" class="p-3 border rounded-lg hover:bg-gray-50 text-sm">
+          <div class="font-medium">
+           e-Devlet
+          </div>
+          <div class="text-xs text-gray-500">
+           Kimlik bilgileri
+          </div></button> <button onclick="simulateGovApp('mhrs')" class="p-3 border rounded-lg hover:bg-gray-50 text-sm">
+          <div class="font-medium">
+           MHRS
+          </div>
+          <div class="text-xs text-gray-500">
+           Sağlık bilgileri
+          </div></button> <button onclick="simulateGovApp('turkiye')" class="p-3 border rounded-lg hover:bg-gray-50 text-sm">
+          <div class="font-medium">
+           Türkiye
+          </div>
+          <div class="text-xs text-gray-500">
+           Dijital kimlik
+          </div></button> <button onclick="simulateGovApp('sgk')" class="p-3 border rounded-lg hover:bg-gray-50 text-sm">
+          <div class="font-medium">
+           SGK
+          </div>
+          <div class="text-xs text-gray-500">
+           Sigorta bilgileri
+          </div></button>
+        </div>
+       </div>
+      </div><button onclick="closeQRScanner()" class="btn-secondary mt-6"> İptal </button>
+     </div>
+    </div>
+   </div><!-- Notification -->
+   <div id="notification" class="notification">
+    <div class="flex items-center">
+     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+     </svg><span id="notification-text">İşlem başarılı!</span>
     </div>
    </div>
   </div>
   <script>
-        // App state
-        let isModalOpen = false;
+    const defaultConfig = {
+        company_name: "PestON Çevre Sağlığı",
+        company_slogan: "Profesyonel Çözümler, Sağlıklı Yarınlar",
+        company_phone: "+90 530 945 63 25",
+        company_email: "info@peston.com.tr",
+        emergency_text: "7/24 Acil Hizmet"
+    };
 
-        // DOM elements
-        const serviceModal = document.getElementById('service-modal');
-        const serviceForm = document.getElementById('service-form');
-        const requestServiceBtn = document.getElementById('request-service-btn');
-        const emergencyBtn = document.getElementById('emergency-btn');
-        const closeModalBtn = document.getElementById('close-modal');
-        const cancelBtn = document.getElementById('cancel-btn');
-        const successMessage = document.getElementById('success-message');
-        const serviceCards = document.querySelectorAll('.service-card');
+    let serviceRequests = [];
+    let currentFilter = 'all';
+    let isLoading = false;
+    let deferredPrompt;
 
-        // Modal functions
-        function openModal(serviceType = '') {
-            isModalOpen = true;
-            serviceModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            
-            if (serviceType) {
-                document.getElementById('service-type').value = serviceType;
+    const dataHandler = {
+        onDataChanged(data) {
+            serviceRequests = data;
+            updateUI();
+        }
+    };
+
+    async function initializeApp() {
+        if (window.dataSdk) {
+            const result = await window.dataSdk.init(dataHandler);
+            if (!result.isOk) {
+                console.error("Data SDK initialization failed");
+                showNotification("Veri yükleme hatası", "error");
             }
         }
-
-        function closeModal() {
-            isModalOpen = false;
-            serviceModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            serviceForm.reset();
-        }
-
-        function showSuccessMessage() {
-            successMessage.style.transform = 'translateY(0)';
-            setTimeout(() => {
-                successMessage.style.transform = 'translateY(-100%)';
-            }, 4000);
-        }
-
-        function makePhoneCall() {
-            window.open('tel:+95309456325', '_blank');
-        }
-
-        // Event listeners
-        requestServiceBtn.addEventListener('click', () => openModal());
-        emergencyBtn.addEventListener('click', makePhoneCall);
-        closeModalBtn.addEventListener('click', closeModal);
-        cancelBtn.addEventListener('click', closeModal);
-
-        // Service card clicks
-        serviceCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const serviceType = card.dataset.service;
-                openModal(serviceType);
-            });
-        });
-
-        // Form submission
-        serviceForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('customer-name').value,
-                phone: document.getElementById('customer-phone').value,
-                serviceType: document.getElementById('service-type').value,
-                address: document.getElementById('customer-address').value,
-                notes: document.getElementById('service-notes').value,
-                timestamp: new Date().toISOString()
-            };
-
-            // Simulate form submission
-            console.log('Service request submitted:', formData);
-            
-            closeModal();
-            showSuccessMessage();
-        });
-
-        // Close modal on backdrop click
-        serviceModal.addEventListener('click', (e) => {
-            if (e.target === serviceModal) {
-                closeModal();
-            }
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isModalOpen) {
-                closeModal();
-            }
-        });
-
-        // PWA installation prompt
-        let deferredPrompt;
+        
+        // PWA Install Prompt
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
+            showInstallPrompt();
         });
 
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('PestON App initialized');
+        // Check if already installed
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            showNotification('🎉 Uygulama başarıyla yüklendi!');
+        }
+    }
+
+    function showInstallPrompt() {
+        const installPrompt = document.getElementById('install-prompt');
+        installPrompt.classList.add('show');
+        
+        // Auto hide after 10 seconds
+        setTimeout(() => {
+            if (installPrompt.classList.contains('show')) {
+                dismissInstall();
+            }
+        }, 10000);
+    }
+
+    function installApp() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    showNotification('📱 Uygulama yükleniyor...');
+                }
+                deferredPrompt = null;
+                dismissInstall();
+            });
+        } else {
+            // Fallback for iOS
+            showNotification('📱 Safari\'de paylaş butonuna basıp "Ana Ekrana Ekle" seçin!');
+            dismissInstall();
+        }
+    }
+
+    function dismissInstall() {
+        document.getElementById('install-prompt').classList.remove('show');
+    }
+
+    function updateUI() {
+        updateStats();
+        renderServiceRequests();
+    }
+
+    function updateStats() {
+        const total = serviceRequests.length;
+        const completed = serviceRequests.filter(req => req.status === 'completed').length;
+
+        document.getElementById('total-requests').textContent = total;
+        document.getElementById('completed-services').textContent = completed;
+    }
+
+    function renderServiceRequests() {
+        const container = document.getElementById('requests-container');
+        let filteredRequests = serviceRequests;
+
+        if (currentFilter === 'completed') {
+            filteredRequests = serviceRequests.filter(req => req.status === 'completed');
+        } else if (currentFilter === 'pending') {
+            filteredRequests = serviceRequests.filter(req => req.status !== 'completed');
+        }
+
+        if (filteredRequests.length === 0) {
+            container.innerHTML = `
+                <div class="text-center text-gray-500 py-12">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                    </svg>
+                    <p class="text-lg font-medium">Henüz hizmet talebi yok</p>
+                    <p class="text-sm mt-2">İlk hizmet talebinizi oluşturun</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = filteredRequests.map(request => `
+            <div class="request-item">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 text-lg">${request.service_type}</h4>
+                        <p class="text-gray-600">${request.customer_name}</p>
+                    </div>
+                    <span class="status-badge ${getStatusClass(request.status)}">
+                        ${getStatusText(request.status)}
+                    </span>
+                </div>
+                
+                <div class="space-y-2 text-sm text-gray-600">
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        ${request.phone}
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        ${request.address}
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        ${formatDate(request.service_date)}
+                    </div>
+                    ${request.area_size ? `
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                            </svg>
+                            ${request.area_size}
+                        </div>
+                    ` : ''}
+                    ${request.notes ? `
+                        <div class="mt-3 p-3 bg-gray-50 rounded-lg">
+                            <p class="text-sm">${request.notes}</p>
+                        </div>
+                    ` : ''}
+                </div>
+                
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-xs text-gray-500">
+                        ${formatDateTime(request.createdAt)}
+                    </span>
+                    <div class="flex items-center space-x-2">
+                        <span class="px-2 py-1 text-xs rounded ${getPriorityClass(request.priority)}">
+                            ${getPriorityText(request.priority)}
+                        </span>
+                        ${request.price ? `
+                            <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded font-medium">
+                                ₺${request.price}
+                            </span>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function getStatusClass(status) {
+        switch(status) {
+            case 'pending': return 'status-pending';
+            case 'confirmed': return 'status-confirmed';
+            case 'completed': return 'status-completed';
+            case 'cancelled': return 'status-cancelled';
+            default: return 'status-pending';
+        }
+    }
+
+    function getStatusText(status) {
+        switch(status) {
+            case 'pending': return 'Bekliyor';
+            case 'confirmed': return 'Onaylandı';
+            case 'completed': return 'Tamamlandı';
+            case 'cancelled': return 'İptal Edildi';
+            default: return 'Bekliyor';
+        }
+    }
+
+    function getPriorityClass(priority) {
+        switch(priority) {
+            case 'emergency': return 'bg-red-100 text-red-800';
+            case 'urgent': return 'bg-orange-100 text-orange-800';
+            case 'normal': return 'bg-blue-100 text-blue-800';
+            default: return 'bg-gray-100 text-gray-800';
+        }
+    }
+
+    function getPriorityText(priority) {
+        switch(priority) {
+            case 'emergency': return 'Çok Acil';
+            case 'urgent': return 'Acil';
+            case 'normal': return 'Normal';
+            default: return 'Normal';
+        }
+    }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('tr-TR');
+    }
+
+    function formatDateTime(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('tr-TR') + ' ' + date.toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'});
+    }
+
+    function switchPage(pageName) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
         });
-    </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9923ce8f04a449c7',t:'MTc2MTA4MTcxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+        
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        document.getElementById(pageName + '-page').classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    function filterRequests(filter) {
+        currentFilter = filter;
+        
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.classList.add('bg-gray-100', 'text-gray-600');
+            btn.style.backgroundColor = '';
+            btn.style.color = '';
+        });
+        
+        event.currentTarget.classList.remove('bg-gray-100', 'text-gray-600');
+        event.currentTarget.classList.add('active');
+        event.currentTarget.style.backgroundColor = 'rgba(19, 50, 43, 0.1)';
+        event.currentTarget.style.color = '#13322B';
+        
+        renderServiceRequests();
+    }
+
+    function openServiceModal(serviceType = '') {
+        document.getElementById('service-modal').style.display = 'flex';
+        document.getElementById('service-form').reset();
+        if (serviceType) {
+            document.getElementById('service-type').value = serviceType;
+        }
+        
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('service-date').min = today;
+    }
+
+    function closeServiceModal() {
+        document.getElementById('service-modal').style.display = 'none';
+    }
+
+    async function submitServiceRequest(event) {
+        event.preventDefault();
+        
+        if (isLoading) return;
+        
+        if (serviceRequests.length >= 999) {
+            showNotification('Maksimum 999 talep sınırına ulaşıldı. Lütfen önce bazı talepleri silin.', 'error');
+            return;
+        }
+        
+        isLoading = true;
+        const submitBtn = document.getElementById('submit-service-btn');
+        submitBtn.textContent = 'Gönderiliyor...';
+        submitBtn.disabled = true;
+        
+        const requestData = {
+            id: Date.now().toString(),
+            service_type: document.getElementById('service-type').value,
+            customer_name: document.getElementById('customer-name').value,
+            phone: document.getElementById('customer-phone').value,
+            address: document.getElementById('customer-address').value,
+            area_size: document.getElementById('area-size').value,
+            service_date: document.getElementById('service-date').value,
+            priority: document.getElementById('service-priority').value,
+            status: 'pending',
+            notes: document.getElementById('service-notes').value,
+            price: 0,
+            createdAt: new Date().toISOString()
+        };
+
+        if (window.dataSdk) {
+            const result = await window.dataSdk.create(requestData);
+            if (result.isOk) {
+                closeServiceModal();
+                showNotification('Hizmet talebiniz başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
+            } else {
+                showNotification('Talep gönderilirken hata oluştu. Lütfen tekrar deneyin.', 'error');
+            }
+        }
+        
+        isLoading = false;
+        submitBtn.textContent = 'Talep Gönder';
+        submitBtn.disabled = false;
+    }
+
+    function emergencyCall() {
+        const phone = document.getElementById('company-phone').textContent;
+        showNotification('Acil arama başlatılıyor...');
+        // In a real app, this would initiate a phone call
+        setTimeout(() => {
+            window.open(`tel:${phone}`, '_blank');
+        }, 1000);
+    }
+
+    function callPhone() {
+        const phone = document.getElementById('company-phone').textContent;
+        window.open(`tel:${phone}`, '_blank');
+    }
+
+    function sendEmail() {
+        const email = document.getElementById('company-email').textContent;
+        window.open(`mailto:${email}`, '_blank');
+    }
+
+    function sendQuickMessage(event) {
+        event.preventDefault();
+        showNotification('Mesajınız gönderildi! En kısa sürede size dönüş yapacağız.');
+        event.target.reset();
+    }
+
+    function showNotification(message, type = 'success') {
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        
+        notification.className = `notification ${type}`;
+        notificationText.textContent = message;
+        notification.classList.add('show');
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 4000);
+    }
+
+    async function render(config) {
+        document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+        document.getElementById('company-slogan').textContent = config.company_slogan || defaultConfig.company_slogan;
+        document.getElementById('company-phone').textContent = config.company_phone || defaultConfig.company_phone;
+        document.getElementById('company-email').textContent = config.company_email || defaultConfig.company_email;
+    }
+
+    function mapToCapabilities(config) {
+        return {
+            recolorables: [],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+        };
+    }
+
+    function mapToEditPanelValues(config) {
+        return new Map([
+            ["company_name", config.company_name || defaultConfig.company_name],
+            ["company_slogan", config.company_slogan || defaultConfig.company_slogan],
+            ["company_phone", config.company_phone || defaultConfig.company_phone],
+            ["company_email", config.company_email || defaultConfig.company_email],
+            ["emergency_text", config.emergency_text || defaultConfig.emergency_text]
+        ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+        window.elementSdk.init({
+            defaultConfig,
+            render,
+            mapToCapabilities,
+            mapToEditPanelValues
+        });
+    }
+
+    // Initialize app
+    initializeApp();
+
+    // QR Scanner Functions
+    function openQRScanner() {
+        document.getElementById('qr-scanner-modal').style.display = 'flex';
+        document.getElementById('manual-qr-input').value = '';
+        showNotification('QR kod okuyucu açıldı! Kamu uygulamanızdan QR kodu okutabilirsiniz.');
+    }
+
+    function closeQRScanner() {
+        document.getElementById('qr-scanner-modal').style.display = 'none';
+    }
+
+    function processManualQR() {
+        const qrData = document.getElementById('manual-qr-input').value.trim();
+        if (!qrData) {
+            showNotification('Lütfen QR kod verisi girin!', 'error');
+            return;
+        }
+        
+        processQRData(qrData);
+    }
+
+    function simulateGovApp(appType) {
+        let mockData = {};
+        
+        switch(appType) {
+            case 'e-devlet':
+                mockData = {
+                    name: 'Ahmet Yılmaz',
+                    tc: '12345678901',
+                    phone: '+90 532 123 45 67',
+                    address: 'Atatürk Mah. Cumhuriyet Cad. No:15 Kadıköy/İstanbul',
+                    source: 'e-Devlet Kapısı'
+                };
+                break;
+            case 'mhrs':
+                mockData = {
+                    name: 'Fatma Demir',
+                    tc: '98765432109',
+                    phone: '+90 533 987 65 43',
+                    address: 'Bahçelievler Mah. İstiklal Cad. No:42 Beylikdüzü/İstanbul',
+                    source: 'MHRS Mobil'
+                };
+                break;
+            case 'turkiye':
+                mockData = {
+                    name: 'Mehmet Kaya',
+                    tc: '11223344556',
+                    phone: '+90 534 112 23 34',
+                    address: 'Çankaya Mah. Atatürk Bulvarı No:88 Çankaya/Ankara',
+                    source: 'Türkiye Uygulaması'
+                };
+                break;
+            case 'sgk':
+                mockData = {
+                    name: 'Ayşe Özkan',
+                    tc: '55667788990',
+                    phone: '+90 535 556 67 78',
+                    address: 'Konak Mah. Gazi Bulvarı No:25 Konak/İzmir',
+                    source: 'SGK Mobil'
+                };
+                break;
+        }
+        
+        processQRData(JSON.stringify(mockData));
+    }
+
+    function processQRData(qrData) {
+        try {
+            let userData = {};
+            
+            // Try to parse as JSON first
+            try {
+                userData = JSON.parse(qrData);
+            } catch {
+                // If not JSON, try to extract from URL or plain text
+                if (qrData.includes('name=') || qrData.includes('tc=')) {
+                    // URL parameters format
+                    const params = new URLSearchParams(qrData.split('?')[1] || qrData);
+                    userData = {
+                        name: params.get('name') || params.get('ad') || '',
+                        tc: params.get('tc') || params.get('kimlik') || '',
+                        phone: params.get('phone') || params.get('tel') || '',
+                        address: params.get('address') || params.get('adres') || '',
+                        source: 'QR Kod'
+                    };
+                } else {
+                    // Plain text or other format
+                    userData = {
+                        name: 'QR Koddan Alınan Kullanıcı',
+                        tc: '',
+                        phone: '',
+                        address: qrData.length > 50 ? qrData.substring(0, 50) + '...' : qrData,
+                        source: 'QR Kod Verisi'
+                    };
+                }
+            }
+            
+            // Fill the service form with extracted data
+            fillServiceFormFromQR(userData);
+            closeQRScanner();
+            
+            showNotification(`${userData.source} verilerinden bilgiler alındı! Form otomatik dolduruldu.`);
+            
+        } catch (error) {
+            showNotification('QR kod verisi işlenirken hata oluştu!', 'error');
+        }
+    }
+
+    function fillServiceFormFromQR(userData) {
+        // Open service modal if not already open
+        if (document.getElementById('service-modal').style.display === 'none') {
+            openServiceModal();
+        }
+        
+        // Fill form fields with QR data
+        if (userData.name) {
+            document.getElementById('customer-name').value = userData.name;
+        }
+        if (userData.phone) {
+            document.getElementById('customer-phone').value = userData.phone;
+        }
+        if (userData.address) {
+            document.getElementById('customer-address').value = userData.address;
+        }
+        
+        // Add source info to notes
+        const notesField = document.getElementById('service-notes');
+        const sourceNote = `\n\n[${userData.source} üzerinden otomatik dolduruldu]`;
+        if (notesField.value) {
+            notesField.value += sourceNote;
+        } else {
+            notesField.value = `Kamu uygulaması üzerinden talep oluşturuldu.${sourceNote}`;
+        }
+    }
+
+    // Show welcome notification
+    setTimeout(() => {
+        showNotification('📱 PestON uygulamasına hoş geldiniz! Ana ekranınıza ekleyebilirsiniz.');
+    }, 2000);
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9922bf59b7bb49c7',t:'MTc2MTA3MDYwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
